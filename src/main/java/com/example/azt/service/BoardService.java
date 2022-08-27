@@ -1,11 +1,17 @@
 package com.example.azt.service;
 
+import com.example.azt.domain.Board;
 import com.example.azt.dto.BoardDto;
 import com.example.azt.repository.BoardRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+
 import org.springframework.stereotype.Service;
+
+import javax.persistence.EntityNotFoundException;
+import java.util.ArrayList;
+import java.util.List;
 
 @RequiredArgsConstructor
 @Service
@@ -13,11 +19,13 @@ public class BoardService {
 
     private final BoardRepository boardRepository;
 
+    // 게시물 저장
     public void saveBoard(BoardDto boardDto){
         boardRepository.save(boardDto.toEntity());
     }
 
     // 게시판 조회
+
     public Page<BoardDto> findAll(Pageable pageable) {
 
         //page 객체로 list를 받아 오는걸로 수정
@@ -41,7 +49,6 @@ public class BoardService {
 //        return boardDtoList;
     }
 
-    // 상세페이지
     public BoardDto detail(Long id) {
 
         Board board = boardRepository.findById(id)
@@ -58,7 +65,9 @@ public class BoardService {
         return dto;
     }
 
+
     // 게시글 수정
+
     public void updateBoard(BoardDto boardDto) {
 
             Board board = boardRepository.getReferenceById(boardDto.getId());
@@ -71,7 +80,9 @@ public class BoardService {
 
     }
 
+
     // 게시글 삭제
+
     public void delete(Long id) {
 
         boardRepository.deleteById(id);
