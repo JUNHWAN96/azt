@@ -36,52 +36,7 @@ public class BoardController {
 
         return "redirect:/board/list";
     }
-
-    @GetMapping("/list")
-    public String boardList(Model model) {
-
-        List<BoardDto> boardDtoList = boardService.findAll();
-
-        model.addAttribute("boardDtoList",boardDtoList);
-
-        return "/board/list";
-    }
-
-    @GetMapping("/detail/{id}")
-    public String boardDetail(@PathVariable Long id, Model model){
-
-       BoardDto board = boardService.detail(id);
-
-       model.addAttribute("board", board);
-
-        return "/board/detail";
-    }
-
-    @GetMapping("/update/{id}")
-    public String updateForm(@PathVariable Long id, Model model){
-
-        BoardDto board = boardService.detail(id);
-
-        model.addAttribute("board", board);
-
-        return "/board/update";
-    }
-
-    @PostMapping("/update")
-    public String update( BoardDto boardDto){
-
-        boardService.updateBoard(boardDto);
-
-        return "redirect:/board/list";
-    }
-
-    @GetMapping("/delete/{id}")
-    public String delete(@PathVariable Long id){
-
-        boardService.delete(id);
-
-        return "redirect:/board/list";
-    }
+    
 
     @GetMapping("/list")
     public String boardList(@PageableDefault(size=3, sort="id", direction= Sort.Direction.DESC)Pageable pageable,
