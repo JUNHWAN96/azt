@@ -49,6 +49,7 @@ public class BoardService {
 //        return boardDtoList;
     }
 
+    // 상세페이지
     public BoardDto detail(Long id) {
 
         Board board = boardRepository.findById(id)
