@@ -36,4 +36,14 @@ public class BoardDto {
                 .build();
         return board;
     }
+
+    public static BoardDto fromEntity(Board entity){
+        return new BoardDto(
+                entity.getId(),
+                entity.getTitle(),
+                entity.getHashtag(),
+                entity.getContent(),
+                entity.getWriter()
+        );
+    }
 }

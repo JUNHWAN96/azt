@@ -5,6 +5,8 @@ import com.example.azt.dto.BoardDto;
 import com.example.azt.repository.BoardRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
@@ -23,23 +25,28 @@ public class BoardService {
     }
 
     // 게시판 조회
-    public List<BoardDto> findAll() {
 
-        List<Board> boards = boardRepository.findAll();
-        List<BoardDto> boardDtoList = new ArrayList<>();
+    public Page<BoardDto> findAll(Pageable pageable) {
 
-        for(Board board : boards ){
-          BoardDto dto = BoardDto.builder()
-                       .id(board.getId())
-                       .title(board.getTitle())
-                       .hashtag(board.getHashtag())
-                       .content(board.getContent())
-                       .writer(board.getWriter())
-                       .build();
+        //page 객체로 list를 받아 오는걸로 수정
 
-          boardDtoList.add(dto);
-        }
-        return boardDtoList;
+        return boardRepository.findAll(pageable).map(BoardDto::fromEntity);
+
+//        List<Board> boards = boardRepository.findAll();
+//        List<BoardDto> boardDtoList = new ArrayList<>();
+//
+//        for(Board board : boards ){
+//          BoardDto dto = BoardDto.builder()
+//                       .id(board.getId())
+//                       .title(board.getTitle())
+//                       .hashtag(board.getHashtag())
+//                       .content(board.getContent())
+//                       .writer(board.getWriter())
+//                       .build();
+//
+//          boardDtoList.add(dto);
+//        }
+//        return boardDtoList;
     }
 
     public BoardDto detail(Long id) {
@@ -58,6 +65,9 @@ public class BoardService {
         return dto;
     }
 
+
+    // 게시글 수정
+
     public void updateBoard(BoardDto boardDto) {
 
             Board board = boardRepository.getReferenceById(boardDto.getId());
@@ -69,6 +79,9 @@ public class BoardService {
             boardRepository.save(board);
 
     }
+
+
+    // 게시글 삭제
 
     public void delete(Long id) {
 
