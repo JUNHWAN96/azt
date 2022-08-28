@@ -1,5 +1,6 @@
 package com.example.azt.controller;
 
+import com.example.azt.domain.constant.SearchType;
 import com.example.azt.dto.BoardDto;
 import com.example.azt.service.BoardService;
 import lombok.RequiredArgsConstructor;
@@ -9,10 +10,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.nio.file.Path;
 import java.util.List;
@@ -39,10 +37,12 @@ public class BoardController {
     
 
     @GetMapping("/list")
-    public String boardList(@PageableDefault(size=3, sort="id", direction= Sort.Direction.DESC)Pageable pageable,
+    public String boardList(@RequestParam(required = false) SearchType searchType,
+                            @RequestParam(required = false) String searchValue,
+                            @PageableDefault(size=3, sort="id", direction= Sort.Direction.DESC)Pageable pageable,
                              Model model) {
 
-        Page<BoardDto> boardDtoList = boardService.findAll(pageable);
+        Page<BoardDto> boardDtoList = boardService.searchBoard(searchType,searchValue,pageable);
 
         int startPage = Math.max( 1,boardDtoList.getPageable().getPageNumber() - 4);
         int endPage = Math.min(boardDtoList.getTotalPages(),boardDtoList.getPageable().getPageNumber() + 4);
@@ -50,6 +50,7 @@ public class BoardController {
         model.addAttribute("startPage", startPage);
         model.addAttribute("endPage", endPage);
         model.addAttribute("boardDtoList",boardDtoList);
+        model.addAttribute("searchType", SearchType.values());
 
         return "/board/list";
     }

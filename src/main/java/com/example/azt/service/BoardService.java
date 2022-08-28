@@ -1,6 +1,7 @@
 package com.example.azt.service;
 
 import com.example.azt.domain.Board;
+import com.example.azt.domain.constant.SearchType;
 import com.example.azt.dto.BoardDto;
 import com.example.azt.repository.BoardRepository;
 import lombok.RequiredArgsConstructor;
@@ -10,8 +11,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
-import java.util.ArrayList;
-import java.util.List;
 
 @RequiredArgsConstructor
 @Service
@@ -26,12 +25,19 @@ public class BoardService {
 
     // 게시판 조회
 
-    public Page<BoardDto> findAll(Pageable pageable) {
+    public Page<BoardDto> searchBoard(SearchType searchType, String searchKeyword, Pageable pageable) {
 
-        //page 객체로 list를 받아 오는걸로 수정
-
+        //page 객체로 list를 받아 오는걸로 수정 + 검색 기능 추가
+    if(searchKeyword == null || searchKeyword.isBlank()) {
         return boardRepository.findAll(pageable).map(BoardDto::fromEntity);
+    }
 
+    return switch (searchType){
+        case TITLE -> boardRepository.findByTitleContaining(searchKeyword,pageable).map(BoardDto::fromEntity);
+        case CONTENT -> boardRepository.findByContentContaining(searchKeyword,pageable).map(BoardDto::fromEntity);
+        case HASHTAG -> boardRepository.findByHashtagContaining(searchKeyword,pageable).map(BoardDto::fromEntity);
+        case WRITER -> boardRepository.findByWriterContaining(searchKeyword,pageable).map(BoardDto::fromEntity);
+    };
 //        List<Board> boards = boardRepository.findAll();
 //        List<BoardDto> boardDtoList = new ArrayList<>();
 //
