@@ -28,6 +28,10 @@ public class UserAccountDto implements UserDetails {
     private String nickName;
     private UserType role;
 
+    public static UserAccountDto of(String userName, String password, String email, String address, String nickName, UserType role){
+        return new UserAccountDto(userName,password,email,address,nickName, role);
+    }
+
     public UserAccountDto(String userName, String password, String email, String address, String nickName, UserType role) {
         this.userName = userName;
         this.password = password;
@@ -47,6 +51,17 @@ public class UserAccountDto implements UserDetails {
                                   .nickName(nickName)
                                   .role(role).build();
         return userAccount;
+    }
+
+    public static UserAccountDto fromEntity(UserAccount entity){
+        return new UserAccountDto(
+                entity.getUserName(),
+                entity.getPassword(),
+                entity.getEmail(),
+                entity.getAddress(),
+                entity.getNickname(),
+                entity.getRole()
+        );
     }
 
 
