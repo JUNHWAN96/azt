@@ -3,6 +3,7 @@ package com.example.azt.dto;
 import com.example.azt.domain.Board;
 import com.example.azt.domain.BoardComment;
 import com.example.azt.domain.UserAccount;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 

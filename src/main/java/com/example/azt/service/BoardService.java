@@ -1,8 +1,13 @@
 package com.example.azt.service;
 
 import com.example.azt.domain.Board;
+import com.example.azt.domain.BoardComment;
 import com.example.azt.domain.constant.SearchType;
+import com.example.azt.domain.constant.UserType;
+import com.example.azt.dto.BoardCommentDto;
 import com.example.azt.dto.BoardDto;
+import com.example.azt.dto.UserAccountDto;
+import com.example.azt.repository.BoardCommentRepository;
 import com.example.azt.repository.BoardRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -11,12 +16,16 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 @RequiredArgsConstructor
 @Service
 public class BoardService {
 
     private final BoardRepository boardRepository;
+    private final BoardCommentRepository boardCommentRepository;
 
     // 게시물 저장
     public void saveBoard(BoardDto boardDto){
@@ -92,6 +101,21 @@ public class BoardService {
     public void delete(Long id) {
 
         boardRepository.deleteById(id);
+
+    }
+
+    public List<BoardCommentDto> getComments(Long id) {
+        List<BoardComment> boardComments = boardCommentRepository.findByBoardId(id);
+        List<BoardCommentDto> boardCommentDtos = new ArrayList<>();
+
+        for(BoardComment boardComment : boardComments){
+
+           BoardCommentDto dto = BoardCommentDto.fromEntity(boardComment);
+
+            boardCommentDtos.add(dto);
+        }
+
+        return boardCommentDtos;
 
     }
 }

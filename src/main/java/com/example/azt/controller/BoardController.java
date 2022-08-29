@@ -1,6 +1,7 @@
 package com.example.azt.controller;
 
 import com.example.azt.domain.constant.SearchType;
+import com.example.azt.dto.BoardCommentDto;
 import com.example.azt.dto.BoardDto;
 import com.example.azt.service.BoardService;
 import lombok.RequiredArgsConstructor;
@@ -59,8 +60,10 @@ public class BoardController {
     public String boardDetail(@PathVariable Long id, Model model){
 
        BoardDto board = boardService.detail(id);
+       List< BoardCommentDto> boardCommentDtos = boardService.getComments(id);
 
        model.addAttribute("board", board);
+       model.addAttribute("boardComments", boardCommentDtos);
 
         return "/board/detail";
     }

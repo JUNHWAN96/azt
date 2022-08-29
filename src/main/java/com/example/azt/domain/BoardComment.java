@@ -19,7 +19,7 @@ public class BoardComment extends AuditingFields  {
     @Column(nullable = false) private String content;
 
     @ManyToOne
-    @JoinColumn(name = "board_id")
+    @JoinColumn(name = "boardid")
     private Board board;
 
     @ManyToOne
