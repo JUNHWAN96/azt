@@ -1,9 +1,13 @@
 package com.example.azt.dto;
 
 import com.example.azt.domain.Board;
+import com.example.azt.domain.UserAccount;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Setter
 @Getter
@@ -18,12 +22,20 @@ public class BoardDto {
     private String content;
     private String writer;
 
-    public BoardDto(Long id, String title, String hashtag ,String content, String writer) {
+    private UserAccount userAccount;
+
+    private LocalDateTime createdDate;
+    private LocalDateTime modifiedDate;
+
+    public BoardDto(Long id, String title, String hashtag ,String content, String writer,UserAccount userAccount ,LocalDateTime createdDate, LocalDateTime modifiedDate) {
         this.id = id;
         this.title = title;
         this.hashtag = hashtag;
         this.content = content;
         this.writer = writer;
+        this.userAccount = userAccount;
+        this.createdDate = createdDate;
+        this.modifiedDate = modifiedDate;
     }
 
     public Board toEntity(){
@@ -33,6 +45,7 @@ public class BoardDto {
                 .hashtag(hashtag)
                 .content(content)
                 .writer(writer)
+                .userAccount(userAccount)
                 .build();
         return board;
     }
@@ -43,7 +56,10 @@ public class BoardDto {
                 entity.getTitle(),
                 entity.getHashtag(),
                 entity.getContent(),
-                entity.getWriter()
+                entity.getWriter(),
+                entity.getUserAccount(),
+                entity.getCreatedDate(),
+                entity.getModifiedDate()
         );
     }
 }

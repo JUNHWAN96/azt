@@ -1,7 +1,13 @@
 package com.example.azt.service;
 
 import com.example.azt.domain.Board;
+import com.example.azt.domain.BoardComment;
+import com.example.azt.domain.constant.SearchType;
+import com.example.azt.domain.constant.UserType;
+import com.example.azt.dto.BoardCommentDto;
 import com.example.azt.dto.BoardDto;
+import com.example.azt.dto.UserAccountDto;
+import com.example.azt.repository.BoardCommentRepository;
 import com.example.azt.repository.BoardRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -12,12 +18,14 @@ import org.springframework.stereotype.Service;
 import javax.persistence.EntityNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @RequiredArgsConstructor
 @Service
 public class BoardService {
 
     private final BoardRepository boardRepository;
+    private final BoardCommentRepository boardCommentRepository;
 
     // 게시물 저장
     public void saveBoard(BoardDto boardDto){
@@ -26,12 +34,19 @@ public class BoardService {
 
     // 게시판 조회
 
-    public Page<BoardDto> findAll(Pageable pageable) {
+    public Page<BoardDto> searchBoard(SearchType searchType, String searchKeyword, Pageable pageable) {
 
-        //page 객체로 list를 받아 오는걸로 수정
-
+        //page 객체로 list를 받아 오는걸로 수정 + 검색 기능 추가
+    if(searchKeyword == null || searchKeyword.isBlank()) {
         return boardRepository.findAll(pageable).map(BoardDto::fromEntity);
+    }
 
+    return switch (searchType){
+        case TITLE -> boardRepository.findByTitleContaining(searchKeyword,pageable).map(BoardDto::fromEntity);
+        case CONTENT -> boardRepository.findByContentContaining(searchKeyword,pageable).map(BoardDto::fromEntity);
+        case HASHTAG -> boardRepository.findByHashtagContaining(searchKeyword,pageable).map(BoardDto::fromEntity);
+        case WRITER -> boardRepository.findByWriterContaining(searchKeyword,pageable).map(BoardDto::fromEntity);
+    };
 //        List<Board> boards = boardRepository.findAll();
 //        List<BoardDto> boardDtoList = new ArrayList<>();
 //
@@ -86,6 +101,21 @@ public class BoardService {
     public void delete(Long id) {
 
         boardRepository.deleteById(id);
+
+    }
+
+    public List<BoardCommentDto> getComments(Long id) {
+        List<BoardComment> boardComments = boardCommentRepository.findByBoardId(id);
+        List<BoardCommentDto> boardCommentDtos = new ArrayList<>();
+
+        for(BoardComment boardComment : boardComments){
+
+           BoardCommentDto dto = BoardCommentDto.fromEntity(boardComment);
+
+            boardCommentDtos.add(dto);
+        }
+
+        return boardCommentDtos;
 
     }
 }
