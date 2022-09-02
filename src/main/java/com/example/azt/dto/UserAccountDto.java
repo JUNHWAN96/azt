@@ -5,8 +5,7 @@ import com.example.azt.domain.constant.UserType;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
+
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -15,7 +14,7 @@ import java.util.Collection;
 @Getter
 @Setter
 @Builder
-public class UserAccountDto implements UserDetails {
+public class UserAccountDto  {
 
     @NotBlank(message = "아이디를 입력하세요")
     private String userName;
@@ -26,6 +25,7 @@ public class UserAccountDto implements UserDetails {
     private String email;
     private String address;
     private String nickName;
+
     private UserType role;
 
     public static UserAccountDto of(String userName, String password, String email, String address, String nickName, UserType role){
@@ -49,7 +49,8 @@ public class UserAccountDto implements UserDetails {
                                   .email(email)
                                   .address(address)
                                   .nickName(nickName)
-                                  .role(role).build();
+                                  .role(role)
+                                 .build();
         return userAccount;
     }
 
@@ -64,34 +65,4 @@ public class UserAccountDto implements UserDetails {
         );
     }
 
-
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
-    }
-
-    @Override
-    public String getUsername() {
-        return userName;
-    }
-
-    @Override
-    public boolean isAccountNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isAccountNonLocked() {
-        return true;
-    }
-
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isEnabled() {
-        return true;
-    }
 }

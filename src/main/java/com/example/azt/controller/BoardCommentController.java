@@ -21,7 +21,7 @@ public class BoardCommentController {
     public String writeBoardComment(BoardCommentRequest boardCommentRequest){
 
         boardCommentService.saveBoardComment(boardCommentRequest.toDto(UserAccountDto.of(
-                "junhwan","test","test@email.com","부산","숑숑비숑", UserType.valueOf("USER"))));
+                "junhwan","test","test@email.com","부산","숑숑비숑", UserType.USER)));
 
         return "redirect:/board/detail/" + boardCommentRequest.getBoardId();
 
