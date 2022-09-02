@@ -20,7 +20,7 @@ public class BoardCommentService {
     public void saveBoardComment(BoardCommentDto boardCommentDto){
 
         Board board = boardRepository.getReferenceById(boardCommentDto.getBoardId());
-        UserAccount userAccount = userAccountRepository.getReferenceById(boardCommentDto.getUserAccountDto().getUsername());
+        UserAccount userAccount = userAccountRepository.getReferenceById(boardCommentDto.getUserAccountDto().getUserName());
         boardCommentRepository.save(boardCommentDto.toEntity(userAccount,board));
 
     }
