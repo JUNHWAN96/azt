@@ -3,16 +3,20 @@ package com.example.azt.controller;
 import com.example.azt.domain.constant.SearchType;
 import com.example.azt.dto.BoardCommentDto;
 import com.example.azt.dto.BoardDto;
+import com.example.azt.dto.request.BoardRequest;
+import com.example.azt.dto.security.BoardPrincipal;
 import com.example.azt.service.BoardService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.nio.file.Path;
 import java.util.List;
 
@@ -29,9 +33,9 @@ public class BoardController {
     }
 
     @PostMapping("/write")
-    public String writeBoard(BoardDto boardDto) {
+    public String writeBoard(BoardRequest boardRequest, @AuthenticationPrincipal BoardPrincipal boardPrincipal) {
 
-        boardService.saveBoard(boardDto);
+        boardService.saveBoard(boardRequest.toDto(boardPrincipal.toDto()));
 
         return "redirect:/board/list";
     }

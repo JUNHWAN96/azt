@@ -24,11 +24,13 @@ public class UserAccount {
     @Column(length = 100) private String nickname;
 
     @Enumerated(EnumType.STRING)
-    private UserType role;
+    @Column private UserType role;
+
+
 
     protected UserAccount(){};
 
-    @Builder
+   @Builder
     public UserAccount(String userName, String password, String email, String address, String nickName, UserType role) {
         this.userName = userName;
         this.password = password;

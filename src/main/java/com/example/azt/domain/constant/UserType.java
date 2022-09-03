@@ -8,6 +8,4 @@ import lombok.RequiredArgsConstructor;
 public enum UserType {
     USER,
     ADMIN;
-
-
 }
