@@ -20,3 +20,7 @@ body{
     border: 1px solid #e5e9f2;
     border-radius: .2rem;
 }
+
+.valid{
+    color: red;
+}
