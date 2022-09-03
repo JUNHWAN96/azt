@@ -23,6 +23,7 @@ public class UserAccountDto  {
     @NotBlank(message = "이메일을 입력하세요")
     @Email(message = "올바른 이메일 형식을 입력하세요")
     private String email;
+
     private String address;
     private String nickName;
 
