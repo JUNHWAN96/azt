@@ -64,7 +64,7 @@
             <div class="row">
               <div class="col-md-10 col-lg-9">
                 <strong th:text="${boardComments.userAccountDto.getUserName()}">아이디</strong>
-                <small><time th:datetime="${boardComments.createdDate}" th:text="${#temporals.format(boardComments.createdDate,'yyyy-MM-dd')}">2022-01-01</time></small>
+                <small><time th:datetime="${boardComments.createdDate}" th:text="${#temporals.format(boardComments.createdDate,'yyyy-MM-dd HH:mm:ss')}">2022-01-01</time></small>
                 <p th:text="${boardComments.content}">
                   본문
                 </p>
