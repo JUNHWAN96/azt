@@ -6,6 +6,8 @@ import lombok.Getter;
 public enum SearchType {
     TITLE,
     CONTENT,
-    HASHTAG
+    HASHTAG,
+
+    USERNAME
 
 }
