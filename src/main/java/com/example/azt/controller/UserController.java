@@ -2,14 +2,13 @@ package com.example.azt.controller;
 
 import com.example.azt.dto.UserAccountDto;
 import com.example.azt.service.UserService;
+import com.example.azt.validation.CheckUserNameValidator;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.Map;
@@ -20,6 +19,12 @@ import java.util.Map;
 public class UserController {
 
     private final UserService userService;
+    private final CheckUserNameValidator checkUserNameValidator; // 회원가입 중복 조회를 위해서 추가
+
+    @InitBinder // 특정 컨트롤러에서 바인딩 또는 검증 설정을 변경하고 싶을 때 사용
+    public void validatorBinder(WebDataBinder binder){ // WebDataBinder : HTTP 요청 정보를 컨트롤러 메소드의 파라미터나
+        binder.addValidators(checkUserNameValidator);  // 모델에 바인딩 할 때 사용되는 바인딩 객체
+    }
 
     @GetMapping("/register")
     public String registerForm(){

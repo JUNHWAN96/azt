@@ -34,7 +34,7 @@
                                     <label for="password">비밀번호</label>
                                     <input type="password" class="form-control" id="password" name="password">
                                 </div>
-                                <span th:if="${error} == 'true'">
+                                <span id="validation" th:if="${error} == 'true'">
                                      <p th:text="${exception}"></p>
                                 </span>
                                 <button type="submit" class="btn btn-theme">Login</button>

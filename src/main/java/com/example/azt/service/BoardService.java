@@ -49,6 +49,7 @@ public class BoardService {
         case TITLE -> boardRepository.findByTitleContaining(searchKeyword,pageable).map(BoardDto::fromEntity);
         case CONTENT -> boardRepository.findByContentContaining(searchKeyword,pageable).map(BoardDto::fromEntity);
         case HASHTAG -> boardRepository.findByHashtagContaining(searchKeyword,pageable).map(BoardDto::fromEntity);
+        case USERNAME -> boardRepository.findByUserAccount_UserNameContaining(searchKeyword,pageable).map(BoardDto::fromEntity);
     };
 //        List<Board> boards = boardRepository.findAll();
 //        List<BoardDto> boardDtoList = new ArrayList<>();

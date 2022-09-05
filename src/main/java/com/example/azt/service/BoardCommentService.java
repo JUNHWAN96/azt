@@ -25,4 +25,7 @@ public class BoardCommentService {
 
     }
 
+    public void deleteBoardComment(Long id, String username) {
+        boardCommentRepository.deleteByIdAndUserAccount_UserName(id,username);
+    }
 }
