@@ -44,7 +44,7 @@ public class BoardController {
     @GetMapping("/list")
     public String boardList(@RequestParam(required = false) SearchType searchType,
                             @RequestParam(required = false) String searchValue,
-                            @PageableDefault(size=3, sort="id", direction= Sort.Direction.DESC)Pageable pageable,
+                            @PageableDefault(size=5, sort="id", direction= Sort.Direction.DESC)Pageable pageable,
                              Model model) {
 
         Page<BoardDto> boardDtoList = boardService.searchBoard(searchType,searchValue,pageable);
