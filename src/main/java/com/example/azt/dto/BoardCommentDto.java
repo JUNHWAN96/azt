@@ -6,9 +6,11 @@ import com.example.azt.domain.UserAccount;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 
+@Transactional
 @Setter
 @Getter
 public class BoardCommentDto {

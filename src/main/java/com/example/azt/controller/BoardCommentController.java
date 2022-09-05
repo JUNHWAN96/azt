@@ -9,8 +9,7 @@ import com.example.azt.service.BoardCommentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @RequiredArgsConstructor
 @RequestMapping("/comments")
@@ -27,5 +26,15 @@ public class BoardCommentController {
         return "redirect:/board/detail/" + boardCommentRequest.getBoardId();
 
     };
+
+    @PostMapping("{id}/delete")
+    public String deleteBoardComment(@PathVariable Long id,
+                                     @AuthenticationPrincipal BoardPrincipal boardPrincipal,
+                                     Long boardId){
+
+        boardCommentService.deleteBoardComment(id,boardPrincipal.getUsername());
+
+        return "redirect:/board/detail/" + boardId;
+    }
 
 }
