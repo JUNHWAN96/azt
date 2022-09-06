@@ -53,6 +53,103 @@
     3. 게시글 삭제 시 해당 댓글 데이터도 같이 삭제되게 하기
 # DB 설계
 ![KakaoTalk_20220906_231446947](https://user-images.githubusercontent.com/102720472/188658695-271bd88f-d496-4902-8c2d-c327646a57d5.png)
+# 주요 기능
+<details>
+  <summary>회원가입</summary>
+  
+  - 유효성 검사
+  
+ ![KakaoTalk_20220906_233131043](https://user-images.githubusercontent.com/102720472/188663786-7e9e4b0c-2172-4878-a552-318912bb001d.png)
+
+ - 회원가입 완료시 로그인 페이지 이동
+ 
+ ![KakaoTalk_20220906_234546245](https://user-images.githubusercontent.com/102720472/188665513-c133164b-1829-447e-8ea9-658e65cd239c.png)
+
+  
+</details>
+
+<details>
+  <summary>로그인</summary>
+  
+  - 유효성 검사
+  
+![KakaoTalk_20220906_234001354](https://user-images.githubusercontent.com/102720472/188664195-f2a8f327-b605-4568-a2ef-00f717eecfe1.png)
+
+ - 로그인 완료시 index 페이지 이동
+ 
+ ![KakaoTalk_20220906_234350542](https://user-images.githubusercontent.com/102720472/188665145-b16d5e18-cfcd-4144-ae67-d1153da4ae13.png)
+
+  
+</details>
+<details>
+  <summary>게시판</summary>
+  
+  
+  - 게시글 목록( 페이징 )
+  
+  ![KakaoTalk_20220906_234350542](https://user-images.githubusercontent.com/102720472/188667910-6b8c8e9a-0844-469d-b1a3-3dcd3130f35c.png)
+  
+  - 게시글 검색 ( 제목, 본문, 해시태그, 작성자 )
+  
+    - 대소문자 구분 X, 부분 문자열 검색
+  
+  ![KakaoTalk_20220906_235529502](https://user-images.githubusercontent.com/102720472/188668005-4417d6d4-3a6a-4f9e-a328-6fb2d5b69691.png)
+  
+  - 게시글 작성
+  
+    - 게시글 작성 폼
+    
+![KakaoTalk_20220907_000323543](https://user-images.githubusercontent.com/102720472/188669687-f3b08061-4e65-47f4-bcfd-a795580b7349.png)
+  
+  - 유효성 검사 ( JavaScript )
+    
+    
+![KakaoTalk_20220907_000122737](https://user-images.githubusercontent.com/102720472/188669769-f9b148ea-dc29-4463-8cc3-b05803acb371.png)
+
+ ![KakaoTalk_20220907_000105656](https://user-images.githubusercontent.com/102720472/188669778-d1ac4c70-3dc6-4923-bbc8-bf98f43fbf1b.png)
+ 
+ - 게시글 작성 후 게시글 목록으로 이동
+ 
+ ![KakaoTalk_20220907_001151089](https://user-images.githubusercontent.com/102720472/188671495-b2738539-e162-46ff-acd0-d52524287004.png)
+
+
+  - 게시글 수정/삭제
+  
+    - 본인 게시글만 수정 삭제 가능
+    
+    ![KakaoTalk_20220907_001421705](https://user-images.githubusercontent.com/102720472/188672281-55731824-c884-4d42-85f1-c02c54a42465.png)
+
+    
+    - 수정 폼
+    
+    ![KakaoTalk_20220907_001440949](https://user-images.githubusercontent.com/102720472/188672315-b478bab4-4aef-415e-81dc-a02468a23ca4.png)
+
+    
+    - 수정 및 삭제 후 게시글 목록으로 이동
+    
+    ![KakaoTalk_20220907_001507572](https://user-images.githubusercontent.com/102720472/188672352-f8acfbeb-ac7b-404f-bb79-675ebf4df429.png)
+
+    
+  
+</details>
+
+<details>
+  <summary>댓글</summary>
+  
+  - 로그인 하지 않고 댓글 쓸 경우 로그인으로 이동
+  
+  - 댓글 쓰기
+  
+  ![KakaoTalk_20220907_001916434](https://user-images.githubusercontent.com/102720472/188673178-3588b60d-c2c1-4264-a055-ffe03b1c2deb.png)
+
+  
+  - 본인 댓글만 삭제 가능
+ 
+ 
+
+  
+</details>
+
 
 
 
