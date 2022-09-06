@@ -13,7 +13,7 @@
    - 댓글 : 작성, 삭제
    
 - 개발 언어 : Java 17
-- 개발 환경 : Spring Boot 2.7.3, Gradle 7.5, JPA (Spring Date JAP), Spring Security, Thymeleaf
+- 개발 환경 : Spring Boot 2.7.3, Gradle 7.5, JPA (Spring Date JPA), Spring Security, Thymeleaf
 - 데이터베이스 : MySQL 8.0.29
 - 형상관리 툴 : GitHub, GitKraken
 
