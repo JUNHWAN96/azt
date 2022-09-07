@@ -154,5 +154,15 @@
     - 데이터베이스에서 생성일, 수정일은 중요한 데이터로 공통적으로 많이 들어가게 된다
     - JPA Audit 기능을 통해서 도메인을 영속성 컨텍스트에 저장하거나 업데이트 하는 작업의 중복을 제거
     - <a href= "https://github.com/JUNHWAN96/azt/blob/bc836242ec39f5f3282463df35ca4491503917ec/src/main/java/com/example/azt/domain/AuditingFields.java#L13">코드확인</a>
+    
+  - 게시글 목록을 받아올 때, page 객체 사용
+    - service클래스에서 repositoy에서 받아 온 entity를 dto로 변환할 때, page객체가 지원하는 map 함수 사용
+    - <a href = "https://github.com/JUNHWAN96/azt/blob/16421f611a7f7325ba6806eb9a6af88fc944ea82/src/main/java/com/example/azt/service/BoardService.java#L41">코드확인</a>
+    
+  - entity를 dto로 변환
+    - 처음에 builder를 이용해서 변환을 했지만, 서비스 로직에서 너무 코드가 길어짐
+    - dto에 따로 함수를 만들어서 변환 작업
+    - <a href = "https://github.com/JUNHWAN96/azt/blob/16421f611a7f7325ba6806eb9a6af88fc944ea82/src/main/java/com/example/azt/service/BoardService.java#L41">코드확인</a>
+    - <a href = "https://github.com/JUNHWAN96/azt/blob/16421f611a7f7325ba6806eb9a6af88fc944ea82/src/main/java/com/example/azt/dto/BoardDto.java#L52 ">dto 코드확인</a>
 
 
