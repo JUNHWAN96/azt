@@ -165,4 +165,13 @@
     - <a href = "https://github.com/JUNHWAN96/azt/blob/16421f611a7f7325ba6806eb9a6af88fc944ea82/src/main/java/com/example/azt/service/BoardService.java#L41">코드확인</a>
     - <a href = "https://github.com/JUNHWAN96/azt/blob/16421f611a7f7325ba6806eb9a6af88fc944ea82/src/main/java/com/example/azt/dto/BoardDto.java#L52 ">dto 코드확인</a>
 
+  - Spring Security 의 기본 동작원리
+    - 처음했던 프로젝트에서는 컨트롤러에서 로그인 구현
+    - Spring Sercurity를 처음 적용해 보면서 어려움이 있었지만, 기본 동작원리를 공부
+    - login 요청이 들어오면 UserDetailService 타입의 loadUserByUserName 함수가 실행
+    - 리턴 타입은 UserDetails / 로그인 진행이 완료되면 session을 만들어 줌
+    - 나의 상황에 맞게 loadByUserName을, UserDetails 오버라이딩
+    - <a href="https://github.com/JUNHWAN96/azt/blob/c7aac8646e6005639167364d7570b3c8e169fca8/src/main/java/com/example/azt/config/SecurityConfig.java#L16">Spring Security Config</a>
+    - <a href="https://github.com/JUNHWAN96/azt/blob/c7aac8646e6005639167364d7570b3c8e169fca8/src/main/java/com/example/azt/service/UserService.java#L41">service</a>
+    - <a href="https://github.com/JUNHWAN96/azt/blob/c7aac8646e6005639167364d7570b3c8e169fca8/src/main/java/com/example/azt/dto/security/BoardPrincipal.java#L18">dto</a>
 
