@@ -153,6 +153,6 @@
   - JPA Audit
     - 데이터베이스에서 생성일, 수정일은 중요한 데이터로 공통적으로 많이 들어가게 된다
     - JPA Audit 기능을 통해서 도메인을 영속성 컨텍스트에 저장하거나 업데이트 하는 작업의 중복을 제거
-
+    - <a href= "https://github.com/JUNHWAN96/azt/blob/bc836242ec39f5f3282463df35ca4491503917ec/src/main/java/com/example/azt/domain/AuditingFields.java#L13">코드확인</a>
 
 
