@@ -43,7 +43,7 @@ public class UserController {
             for(String key : validatorResult.keySet()){ // Map을 전체 순회하기 위해서 keySet()사용/ key값만 가져옴
                 model.addAttribute(key,validatorResult.get(key));
             }
-            return "/auth/register";
+            return "auth/register";
         }
 
         userService.saveUser(userAccountDto);

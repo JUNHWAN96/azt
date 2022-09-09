@@ -69,7 +69,7 @@ public class BoardController {
        model.addAttribute("board", board);
        model.addAttribute("boardComments", boardCommentDtos);
 
-        return "/board/detail";
+        return "board/detail";
     }
 
     @GetMapping("/update/{id}")
@@ -79,7 +79,7 @@ public class BoardController {
 
         model.addAttribute("board", board);
 
-        return "/board/update";
+        return "board/update";
     }
 
     @PostMapping("/update")
