@@ -57,7 +57,7 @@ public class BoardController {
         model.addAttribute("boardDtoList",boardDtoList);
         model.addAttribute("searchType", SearchType.values());
 
-        return "board/list";
+        return "/board/list";
     }
 
     @GetMapping("/detail/{id}")
