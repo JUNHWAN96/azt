@@ -29,7 +29,7 @@ public class BoardController {
 
     @GetMapping("/write")
     public String writeBoardForm() {
-        return "/board/write";
+        return "board/write";
     }
 
     @PostMapping("/write")
