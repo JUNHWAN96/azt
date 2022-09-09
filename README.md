@@ -2,7 +2,7 @@
 
 기본적인 게시판 crud 연습을 위한 코드 작성
 
-데모 사이트( 헤로쿠 배포 ) : <a href = "https://azt-web.herokuapp.com"></a>
+데모 사이트( 헤로쿠 배포 ) : <https://azt-web.herokuapp.com>
 
 # 1. 개요
  - 개인프로젝트
