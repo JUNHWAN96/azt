@@ -25,7 +25,7 @@ public class Board extends AuditingFields {
     @Column(nullable = false) private String title;
 
     @Column private String hashtag;
-    @Column private String content;
+    @Column(length = 1000) private String content;
 
     @OrderBy("createdDate DESC ")
     @OneToMany(mappedBy = "board", cascade = CascadeType.ALL) // 양방향 관계 주인 설정
